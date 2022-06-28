@@ -1,8 +1,11 @@
 :root{
-    --mainColor: rgb(252, 199, 219);
+    --mainColor: rgb(255, 218, 232);
     --accentColor: rgb(247, 19, 106);
-    --secondaryAccent: rgb(161, 154, 255);
+    --secondaryAccent: rgb(228, 206, 255);
     --textColor: rgb(0, 0, 0);
+}
+body{
+    background-color: var(--mainColor);
 }
 
 header{
@@ -10,15 +13,50 @@ header{
     justify-content: flex-end;
     background-color: var(--mainColor);
     padding: 1em;
-    margin: auto;
-    width: 100%;
+    align-items: baseline;
+
+    
+}
+main{
+    background-color: var(--secondaryAccent);
+    padding: 2em;
 }
 
 h1{
-    margin-right: 80%;
+    margin-right: auto;
+
 }
 .timer{
-    margin-right: 2%;
+
+}
+
+h2{
+    text-align: center;
+    font-size: 3em;
+    padding-bottom: .5em;
+}
+p{
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 1em;
+    
+}
+.questions-container{
+    display: flex;
+    background-color: var();
+    justify-content: center;
+    
+}
+
+.start-game{
+    background-color: var(--accentColor);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    padding: 1.5em;
+    text-align: center;
+    width: 10%;
+    border-radius:10%;
+    
 }
 
 
