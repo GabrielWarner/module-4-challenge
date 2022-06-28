@@ -1,0 +1,24 @@
+:root{
+    --mainColor: rgb(252, 199, 219);
+    --accentColor: rgb(247, 19, 106);
+    --secondaryAccent: rgb(161, 154, 255);
+    --textColor: rgb(0, 0, 0);
+}
+
+header{
+    display: flex;
+    justify-content: flex-end;
+    background-color: var(--mainColor);
+    padding: 1em;
+    margin: auto;
+    width: 100%;
+}
+
+h1{
+    margin-right: 80%;
+}
+.timer{
+    margin-right: 2%;
+}
+
+
