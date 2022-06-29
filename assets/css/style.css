@@ -46,10 +46,12 @@ p{
     display: none;
 }
 .questions-container{
-    display: flex;
+    padding: 1em;
+    border: 5px solid var(--accentColor);
+    display: block;
     background-color: var();
     justify-content: center;
-    background-color: red;
+    background-color: var(--mainColor);
     
 }
 
@@ -64,8 +66,16 @@ p{
     
 }
 
+.question{
+font-weight: bold;
+}
+
 .hide {
     display: none;
+}
+
+.btn{
+    background-color: var(--secondaryAccent);
 }
 
 
