@@ -7,39 +7,31 @@ var startButton = document.querySelector("#start-game");
 var containerEl = document.querySelector(".questions-container-hidden");
 var timerEl = document.querySelector(".timer");
 var questionEl = document.getElementById('question')
-var questionEl = document.getElementById('choice1')
-var questionEl = document.getElementById('choice2')
-var questionEl = document.getElementById('choice3')
-var questionEl = document.getElementById('choice4')
+var answerEl = document.querySelector("#answers")
 
 var timeLeft = 60;
+var currentQuestion = -1;
 
 var questions = [
     {
       question: "What exercise targets the hamstrings?",
-      choice1: "Romanian Dead Lifts",
-      choice2: "Skull Crushers",
-      choice3: "Bent Over Row",
-      choice4: "Dumbell Curls",
+      answers: ["Romanian Dead Lifts","Skull Crushers","Dumbell Curls","Bent Over Row",],
       answer: "Romanian Dead Lifts",
     },
     {
       question: "How many laps on a track does it take to reach 1 mile?",
-      choice1: "10",
-      choice2: "4",
-      choice3: "6",
-      choice4: "8",
+      answers: ["10","4","6","8",],
       answer: "4",
     },
     {
       question: "What exercise targets the Glutes?",
-      choice1: "Tricep Extensions",
-      choice2: "Bench Press",
-      choice3: "Bicep Curls",
-      choice4: "Hip Thrusts",
+      answers: ["Tricep Extensions","Bench Press","Bicep Curls","Hip Thrusts",],
       answer: "Hip Thrusts",
     },
   ];
+
+
+  startButton.addEventListener("click", startGame);
 
 
 
@@ -59,9 +51,60 @@ var timeInterval = setInterval(function () {
   //hides the start game button
   startButton.classList.add("hide");
   containerEl.classList.add("questions-container");
-  for (let i = 0; i < array.questions; i++) {
-    const element = array[i];
-  }
+
+
+  renderQuestion()
 }
 
-startButton.addEventListener("click", startGame);
+
+
+function renderQuestion(){
+  currentQuestion++
+  //get next question from array
+  //render to page
+  const displayQuestion = questions[currentQuestion]
+  console.log(displayQuestion)
+  questionEl.textContent= displayQuestion.question
+  answerEl.innerHTML=""
+  displayQuestion.answers.forEach(function (answer){
+    var buttonEl = document.createElement("button")
+    buttonEl.setAttribute("value", answer)
+    buttonEl.setAttribute("class", "btn")
+    buttonEl.textContent=answer
+    buttonEl.onclick=checkAnswer
+    answerEl.appendChild(buttonEl)
+  })
+
+
+}
+
+
+function checkAnswer(event){
+  console.log(this.value)
+  if(this.value !== questions[currentQuestion].answer){
+    timeLeft -= 10;
+  }else if(currentQuestion === questions.length-1){
+    endGame()
+  }else{
+    renderQuestion()
+  }
+
+  //called when a user clicks on a button
+  //every button will have an event listener
+ //event.target.textcontent
+ //compare with real answwer
+ //if correct add score and if not deduct time
+ //check to see if there are questions left, end game if none, call render if
+ //call render function
+}
+
+function endGame(){
+  //hide question container div
+  //reveal highscore div
+  //ask for initials
+  //retreive highscores from local storage
+  //check if null, if find high scores add current initials to list along with others (array of objects)
+  //render array in ordered list
+  //re save new array to ocal storage that includes newest score
+}
+
