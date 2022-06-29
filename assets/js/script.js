@@ -6,6 +6,11 @@
 var startButton = document.querySelector("#start-game");
 var containerEl = document.querySelector(".questions-container-hidden");
 var timerEl = document.querySelector(".timer");
+var questionEl = document.getElementById('question')
+var questionEl = document.getElementById('choice1')
+var questionEl = document.getElementById('choice2')
+var questionEl = document.getElementById('choice3')
+var questionEl = document.getElementById('choice4')
 
 var timeLeft = 60;
 
