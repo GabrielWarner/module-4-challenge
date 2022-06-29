@@ -20,6 +20,7 @@ header{
 main{
     background-color: var(--secondaryAccent);
     padding: 2em;
+    text-align: center;
 }
 
 h1{
@@ -41,10 +42,14 @@ p{
     padding-bottom: 1em;
     
 }
+.questions-container-hidden{
+    display: none;
+}
 .questions-container{
     display: flex;
     background-color: var();
     justify-content: center;
+    background-color: red;
     
 }
 
@@ -57,6 +62,10 @@ p{
     width: 10%;
     border-radius:10%;
     
+}
+
+.hide {
+    display: none;
 }
 
 
