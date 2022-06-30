@@ -11,18 +11,13 @@ var answerEl = document.querySelector("#answers")
 var highscoreEl = document.getElementById('highscore')
 var highscoretextEl = document.getElementById('initial-text')
 var scoreTrackerEl = document.getElementById('score-tracker')
+var highscoreListEl = document.getElementById('highscore-list')
 
 var timeLeft = 60;
 var currentQuestion = -1;
 var scoreTracker = 0;
 
-var highscores = [
-  {
-    initial: []
-  },
-  {scores:[]
-  }
-]
+var highscores = []
 
 var questions = [
     {
@@ -40,21 +35,25 @@ var questions = [
       answers: ["Tricep Extensions","Bench Press","Bicep Curls","Hip Thrusts",],
       answer: "Hip Thrusts",
     },
+    
   ];
 
+  function renderHighScores() {
+    // Clear todoList element and update todoCountSpan
+    highscoreListEl.innerHTML = "";
   
-
-function timeInterval(){
-  if (timeLeft > 1) {
-    timerEl.textContent = timeLeft;
-    timeLeft--;
-  } else {
-    timerEl.textContent = "";
-    clearInterval(timeInterval);
-    timerEl.textContent = "";
-    endGame()
+    // Render a new li for each score
+    for (var i = 0; i < highscores.length; i++) {
+      var highscoreslist = highscores[i];
+  
+      var li = document.createElement("li");
+      li.textContent = highscoreslist;
+      li.setAttribute("data-index", i);
+      highscoreListEl.appendChild(li);
+    }
   }
-}
+
+
 
   startButton.addEventListener("click", startGame);
 
@@ -75,9 +74,21 @@ function timeInterval(){
 function startGame() {
     //timer that starts at 60 seconds
   setInterval(timeInterval, 1000)
+  function timeInterval(){
+    if (timeLeft > 1) {
+      timerEl.textContent = timeLeft;
+      timeLeft--;
+    } else {
+      timerEl.textContent = "";
+      clearInterval(timeInterval);
+      timerEl.textContent = "";
+      endGame()
+    }
+  }
   //hides the start game button
   startButton.classList.add("hide");
   containerEl.classList.add("questions-container");
+
 
 
   renderQuestion()
@@ -135,12 +146,19 @@ function checkAnswer(event){
 
 
 function endGame(){
+  var storedHighScores = JSON.parse(localStorage.getItem("highscores"));
+  if(storedHighScores !== null) {
+    highscores = storedHighScores
+  }
+  
   //hide question container div
   containerEl.classList.add("hide");
+  timerEl.remove()
   //reveal highscore div
   scoreTrackerEl.textContent=`${scoreTracker}/3`
   highscoreEl.classList.add("highscore")
   highscoreEl.addEventListener
+  renderHighScores()
   //ask for initials
   //retreive highscores from local storage
   //check if null, if find high scores add current initials to list along with others (array of objects)
@@ -163,7 +181,7 @@ highscoreEl.addEventListener("submit", function(event) {
   }
 
   // Add new todoText to todos array, clear the input
-  highscores.push() = highscoretext
+  highscores.push(`${highscoretext} - ${scoreTracker}/3`)
   //highscores[0].push(highscoretext);
   highscoretextEl.value = "";
 
