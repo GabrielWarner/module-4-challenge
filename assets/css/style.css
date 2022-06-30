@@ -96,10 +96,21 @@ font-size: 2em;
 
 }
 
+.restart-btn{
+    background-color: var(--secondaryAccent);
+    padding: .5em;
+    border-radius: 5%;
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
 .btn:hover{
     background-color: var(--accentColor);
 }
 
+.restart-btn:hover{
+    background-color: var(--accentColor);
+}
 .highscore{
     display: initial;
 
