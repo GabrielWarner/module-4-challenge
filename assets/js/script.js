@@ -10,9 +10,11 @@ var questionEl = document.getElementById('question')
 var answerEl = document.querySelector("#answers")
 var highscoreEl = document.getElementById('highscore')
 var highscoretextEl = document.getElementById('initial-text')
+var scoreTrackerEl = document.getElementById('score-tracker')
 
 var timeLeft = 60;
 var currentQuestion = -1;
+var scoreTracker = 0;
 
 var highscores = [
   {
@@ -107,11 +109,13 @@ function checkAnswer(event){
   if(this.value !== questions[currentQuestion].answer){
     timeLeft -= 10;
   }else if(currentQuestion === questions.length-1){
+    scoreTracker++
     endGame()
     //removes timer when game is finished
     timerEl.remove
   }else{
     renderQuestion()
+    scoreTracker++
   }
 
   //called when a user clicks on a button
@@ -128,6 +132,7 @@ function endGame(){
   //hide question container div
   containerEl.classList.add("hide");
   //reveal highscore div
+  scoreTrackerEl.textContent=`${scoreTracker}/3`
   highscoreEl.classList.add("highscore")
   highscoreEl.addEventListener
   //ask for initials
