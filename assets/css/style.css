@@ -76,6 +76,13 @@ font-weight: bold;
 
 .btn{
     background-color: var(--secondaryAccent);
+    padding: .5em;
+    border-radius: 5%;
+
 }
 
 
+.highscore{
+    display: block;
+    
+}

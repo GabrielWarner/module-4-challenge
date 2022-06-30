@@ -8,9 +8,19 @@ var containerEl = document.querySelector(".questions-container-hidden");
 var timerEl = document.querySelector(".timer");
 var questionEl = document.getElementById('question')
 var answerEl = document.querySelector("#answers")
+var highscoreEl = document.getElementById('highscore')
+var highscoretextEl = document.getElementById('initial-text')
 
 var timeLeft = 60;
 var currentQuestion = -1;
+
+var highscores = [
+  {
+    initial: []
+  },
+  {scores:[]
+  }
+]
 
 var questions = [
     {
@@ -30,24 +40,39 @@ var questions = [
     },
   ];
 
+  
+
+function timeInterval(){
+  if (timeLeft > 1) {
+    timerEl.textContent = timeLeft;
+    timeLeft--;
+  } else {
+    timerEl.textContent = "";
+    clearInterval(timeInterval);
+    timerEl.textContent = "";
+    endGame()
+  }
+}
 
   startButton.addEventListener("click", startGame);
+
+
+  //seperated set interval and the function so that I can call it in start game
+ // var timeInterval = setInterval(function () {
+  //  if (timeLeft > 1) {
+  //    timerEl.textContent = timeLeft;
+  //    timeLeft--;
+ //   } else {
+  //    timerEl.textContent = "";
+  //    clearInterval(timeInterval);
+  //  }
+  //}, 1000);
 
 
 
 function startGame() {
     //timer that starts at 60 seconds
-var timeInterval = setInterval(function () {
-    if (timeLeft > 1) {
-      timerEl.textContent = timeLeft;
-  
-      timeLeft--;
-    } else {
-      timerEl.textContent = "";
-  
-      clearInterval(timeInterval);
-    }
-  }, 1000);
+  setInterval(timeInterval, 1000)
   //hides the start game button
   startButton.classList.add("hide");
   containerEl.classList.add("questions-container");
@@ -63,7 +88,6 @@ function renderQuestion(){
   //get next question from array
   //render to page
   const displayQuestion = questions[currentQuestion]
-  console.log(displayQuestion)
   questionEl.textContent= displayQuestion.question
   answerEl.innerHTML=""
   displayQuestion.answers.forEach(function (answer){
@@ -80,11 +104,12 @@ function renderQuestion(){
 
 
 function checkAnswer(event){
-  console.log(this.value)
   if(this.value !== questions[currentQuestion].answer){
     timeLeft -= 10;
   }else if(currentQuestion === questions.length-1){
     endGame()
+    //removes timer when game is finished
+    timerEl.remove
   }else{
     renderQuestion()
   }
@@ -98,9 +123,13 @@ function checkAnswer(event){
  //call render function
 }
 
+
 function endGame(){
   //hide question container div
+  containerEl.classList.add("hide");
   //reveal highscore div
+  highscoreEl.classList.add("highscore")
+  highscoreEl.addEventListener
   //ask for initials
   //retreive highscores from local storage
   //check if null, if find high scores add current initials to list along with others (array of objects)
@@ -108,3 +137,26 @@ function endGame(){
   //re save new array to ocal storage that includes newest score
 }
 
+function storeScores(){
+  localStorage.setItem("highscores", JSON.stringify(highscores))
+}
+
+highscoreEl.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  var highscoretext = highscoretextEl.value.trim();
+
+  // Return from function early if submitted todoText is blank
+  if (highscoretext === "") {
+    return;
+  }
+
+  // Add new todoText to todos array, clear the input
+  highscores.push() = highscoretext
+  //highscores[0].push(highscoretext);
+  highscoretextEl.value = "";
+
+  // Store updated todos in localStorage, re-render the list
+  storeScores();
+  //renderTodos();
+});
