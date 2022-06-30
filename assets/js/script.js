@@ -12,6 +12,8 @@ var highscoreEl = document.getElementById('highscore')
 var highscoretextEl = document.getElementById('initial-text')
 var scoreTrackerEl = document.getElementById('score-tracker')
 var highscoreListEl = document.getElementById('highscore-list')
+var instructionEl = document.getElementById('instruction-text')
+var restartButtonEl = document.getElementById('restart-button')
 
 var timeLeft = 60;
 var currentQuestion = -1;
@@ -55,8 +57,17 @@ var questions = [
 
 
 
+
+
   startButton.addEventListener("click", startGame);
 
+
+  restartButtonEl.addEventListener("click", reload);
+  
+  function reload(){
+
+    reload = location.reload()
+  }
 
   //seperated set interval and the function so that I can call it in start game
  // var timeInterval = setInterval(function () {
@@ -88,6 +99,7 @@ function startGame() {
   //hides the start game button
   startButton.classList.add("hide");
   containerEl.classList.add("questions-container");
+  instructionEl.classList.add("hide")
 
 
 
@@ -150,7 +162,7 @@ function endGame(){
   if(storedHighScores !== null) {
     highscores = storedHighScores
   }
-  
+
   //hide question container div
   containerEl.classList.add("hide");
   timerEl.remove()
@@ -175,17 +187,16 @@ highscoreEl.addEventListener("submit", function(event) {
 
   var highscoretext = highscoretextEl.value.trim();
 
-  // Return from function early if submitted todoText is blank
   if (highscoretext === "") {
     return;
   }
 
-  // Add new todoText to todos array, clear the input
+ 
   highscores.push(`${highscoretext} - ${scoreTracker}/3`)
-  //highscores[0].push(highscoretext);
+
   highscoretextEl.value = "";
 
-  // Store updated todos in localStorage, re-render the list
+
   storeScores();
-  //renderTodos();
+  renderHighScores();
 });

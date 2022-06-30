@@ -10,7 +10,7 @@ body{
 
 header{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     background-color: var(--mainColor);
     padding: 1em;
     align-items: baseline;
@@ -27,26 +27,37 @@ h1{
     margin-right: auto;
 
 }
-.timer{
-
-}
-
 h2{
     text-align: center;
     font-size: 3em;
     padding-bottom: .5em;
 }
+h3{
+    font-size: 2em;
+    padding-bottom: ;
+}
+.timer-box{
+    background-color: var(--secondaryAccent);
+    border: 2px solid black;
+    padding: .5em;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+
 p{
     text-align: center;
     font-weight: bold;
-    padding-bottom: 1em;
+    padding-bottom: .2em;
+    font-size: 2em;
     
 }
 .questions-container-hidden{
     display: none;
 }
 .questions-container{
-    padding: 1em;
+    padding: 2em;
     border: 5px solid var(--accentColor);
     display: block;
     background-color: var();
@@ -68,6 +79,8 @@ p{
 
 .question{
 font-weight: bold;
+padding: 1em;
+font-size: 2em;
 }
 
 .hide {
@@ -78,11 +91,44 @@ font-weight: bold;
     background-color: var(--secondaryAccent);
     padding: .5em;
     border-radius: 5%;
+    font-weight: bold;
+    font-size: 1.25em;
 
 }
 
+.btn:hover{
+    background-color: var(--accentColor);
+}
 
 .highscore{
+    display: initial;
+
+}
+.answers{
+    padding: 1em;
+}
+button{
+    margin: 1em;
+}
+
+.highscore-list{
+    font-weight: bold;
+    font-size: 1.5;
+    padding: 1.5em;
+    border: 5px solid var(--accentColor);
     display: block;
+    background-color: var();
+    justify-content: center;
+    background-color: var(--mainColor);
     
+    width: 20%;
+    margin: 1em auto;
+}
+
+label{
+    font-weight: bold;
+}
+
+form{
+    padding:1em 0 1em 0 ;
 }
