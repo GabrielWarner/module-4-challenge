@@ -41,7 +41,7 @@ var questions = [
   ];
 
   function renderHighScores() {
-    // Clear todoList element and update todoCountSpan
+    
     highscoreListEl.innerHTML = "";
   
     // Render a new li for each score
@@ -62,12 +62,9 @@ var questions = [
   startButton.addEventListener("click", startGame);
 
 
-  restartButtonEl.addEventListener("click", reload);
-  
-  function reload(){
 
-    reload = location.reload()
-  }
+
+
 
   //seperated set interval and the function so that I can call it in start game
  // var timeInterval = setInterval(function () {
