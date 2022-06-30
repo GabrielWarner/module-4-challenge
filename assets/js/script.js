@@ -108,6 +108,12 @@ function renderQuestion(){
 function checkAnswer(event){
   if(this.value !== questions[currentQuestion].answer){
     timeLeft -= 10;
+    if(currentQuestion === questions.length-1){
+      endGame()
+    }else{
+      renderQuestion()
+    }
+    
   }else if(currentQuestion === questions.length-1){
     scoreTracker++
     endGame()
